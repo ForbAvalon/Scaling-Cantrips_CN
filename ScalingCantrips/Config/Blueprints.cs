@@ -66,12 +66,18 @@ namespace ScalingCantrips.Config
     [HarmonyPatch(typeof(BlueprintsCache), "Init")]
     static class AutoGUID_Log_Patch
     {
-
       [HarmonyPriority(Priority.Last)]
       static void Postfix()
       {
-        GenerateUnused();
-        WriteBlueprints("Blueprints.json");
+        try
+        {
+          GenerateUnused();
+          WriteBlueprints("Blueprints.json");
+        }
+        catch (Exception e)
+        {
+          Main.Logger.LogException(e);
+        }
       }
 
       static void GenerateUnused()

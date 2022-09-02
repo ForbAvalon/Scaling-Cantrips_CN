@@ -9,25 +9,39 @@ using ScalingCantrips.Utilities;
 
 using UnityEngine;
 using UnityModManagerNet;
+using static UnityModManagerNet.UnityModManager.ModEntry;
 //using static UnityModManagerNet.UnityModManager;
 
 namespace ScalingCantrips
 {
   public class Main
   {
+    internal static ModLogger Logger;
 
     private static bool Load(UnityModManager.ModEntry modEntry)
     {
-      modEntry.OnToggle = new Func<UnityModManager.ModEntry, bool, bool>(OnToggle);
-      var harmony = new Harmony(modEntry.Info.Id);
+      try
+      {
+        Logger = modEntry.Logger;
+        modEntry.OnToggle = OnToggle;
+        var harmony = new Harmony(modEntry.Info.Id);
 
-      settings = UnityModManager.ModSettings.Load<Settings>(modEntry);
-      ModSettings.ModEntry = modEntry;
-      ModSettings.LoadAllSettings();
-      modEntry.OnGUI = new Action<UnityModManager.ModEntry>(OnGUI);
-      modEntry.OnSaveGUI = new Action<UnityModManager.ModEntry>(OnSaveGUI);
-      harmony.PatchAll(Assembly.GetExecutingAssembly());
-      PostPatchInitializer.Initialize();
+        settings = UnityModManager.ModSettings.Load<Settings>(modEntry);
+        ModSettings.ModEntry = modEntry;
+        ModSettings.LoadAllSettings();
+
+        modEntry.OnGUI = new Action<UnityModManager.ModEntry>(OnGUI);
+        modEntry.OnSaveGUI = new Action<UnityModManager.ModEntry>(OnSaveGUI);
+
+        harmony.PatchAll(Assembly.GetExecutingAssembly());
+        PostPatchInitializer.Initialize();
+      }
+      catch (Exception e)
+      {
+        Logger?.LogException(e);
+        return false;
+      }
+
       return true;
     }
 
@@ -49,11 +63,12 @@ namespace ScalingCantrips
         return;
       }
 
-      GUILayoutOption[] options = new GUILayoutOption[]
-      {
-                GUILayout.ExpandWidth(true),
-                GUILayout.MaxWidth(1000)
-      };
+      GUILayoutOption[] options =
+        new GUILayoutOption[]
+        {
+          GUILayout.ExpandWidth(true),
+          GUILayout.MaxWidth(1000)
+        };
 
       GUILayout.Label("FOR BEST EFFECT: restart the game after changing these settings.", options);
       GUILayout.Label("Cantrips Caster Levels Required", options);
@@ -64,7 +79,8 @@ namespace ScalingCantrips
       GUILayout.Label(settings.MaxDice.ToString(), options);
       settings.MaxDice = (int)GUILayout.HorizontalSlider(settings.MaxDice, 1, 40, options);
 
-      settings.IgnoreDivineZap = GUILayout.Toggle(settings.IgnoreDivineZap, "Check this to prevent Divine Zap from being scaled", options);
+      settings.IgnoreDivineZap =
+        GUILayout.Toggle(settings.IgnoreDivineZap, "Check this to prevent Divine Zap from being scaled", options);
 
       GUILayout.Label("Disrupt Undead Caster Levels Required", options);
       GUILayout.Label(settings.DisruptCasterLevelsReq.ToString(), options);
@@ -101,10 +117,12 @@ namespace ScalingCantrips
       GUILayout.Label(settings.DisruptLifeMaxDice.ToString(), options);
       settings.DisruptLifeMaxDice = (int)GUILayout.HorizontalSlider(settings.DisruptLifeMaxDice, 1, 40, options);
 
-      settings.StartImmediately = GUILayout.Toggle(settings.StartImmediately, "Check this to have caster levels take effect immediately (e.g Wizard 2 gets you 2d3 with default settings)", options);
-
+      settings.StartImmediately =
+        GUILayout.Toggle(
+          settings.StartImmediately,
+          "Check this to have caster levels take effect immediately (e.g Wizard 2 gets you 2d3 with default settings)",
+          options);
     }
-
 
     private static bool iAmEnabled;
 
@@ -114,19 +132,23 @@ namespace ScalingCantrips
     {
       ModSettings.ModEntry.Logger.Log(msg);
     }
+
     [System.Diagnostics.Conditional("DEBUG")]
     public static void LogDebug(string msg)
     {
       ModSettings.ModEntry.Logger.Log(msg);
     }
+
     public static void LogPatch(string action, [NotNull] IScriptableObjectWithAssetId bp)
     {
       Log($"{action}: {bp.AssetGuid} - {bp.name}");
     }
+
     public static void LogHeader(string msg)
     {
       Log($"--{msg.ToUpper()}--");
     }
+
     public static Exception Error(string message)
     {
       Log(message);
@@ -140,6 +162,5 @@ namespace ScalingCantrips
     //    typeof(LocalizedString).GetField("m_Key", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(localizedString, key);
     //    return localizedString;
     //}
-
   }
 }

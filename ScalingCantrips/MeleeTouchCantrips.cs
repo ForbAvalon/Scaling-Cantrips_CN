@@ -17,6 +17,7 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Blueprints.Classes;
+using System;
 
 namespace ScalingCantrips
 {
@@ -29,10 +30,17 @@ namespace ScalingCantrips
 
       static void Postfix()
       {
-        if (Initialized) return;
-        Initialized = true;
-        Main.Log("Adding Spells");
-        AddJoltingGrasp();
+        try
+        {
+          if (Initialized) return;
+          Initialized = true;
+          Main.Log("Adding Spells");
+          AddJoltingGrasp();
+        }
+        catch (Exception e)
+        {
+          Main.Logger.LogException(e);
+        }
       }
 
       static void AddJoltingGrasp()

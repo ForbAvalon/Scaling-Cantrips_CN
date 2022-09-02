@@ -1,14 +1,15 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using ScalingCantrips.Extensions;
-using ScalingCantrips.Utilities;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Designers.Mechanics.Recommendations;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using ScalingCantrips.Extensions;
+using ScalingCantrips.Utilities;
+using System;
 
 namespace ScalingCantrips
 {
@@ -22,13 +23,20 @@ namespace ScalingCantrips
       [HarmonyPriority(Priority.LowerThanNormal)]
       static void Postfix()
       {
-        if (Initialized) return;
-        Initialized = true;
-        Main.Log("Adding Cantrip Feats");
-        // CreateAddCasterStateToDamage();
-        AddCantripFeatures(); //int wis and cha
-        AddCantripPrereqs();
-        EditItemFeatures();
+        try
+        {
+          if (Initialized) return;
+          Initialized = true;
+          Main.Log("Adding Cantrip Feats");
+          // CreateAddCasterStateToDamage();
+          AddCantripFeatures(); //int wis and cha
+          AddCantripPrereqs();
+          EditItemFeatures();
+        }
+        catch (Exception e)
+        {
+          Main.Logger.LogException(e);
+        }
       }
 
       static void EditItemFeatures()

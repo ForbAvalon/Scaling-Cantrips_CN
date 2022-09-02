@@ -35,5 +35,4 @@ namespace ScalingCantrips
 
     public bool StartImmediately = true;
   }
-
 }

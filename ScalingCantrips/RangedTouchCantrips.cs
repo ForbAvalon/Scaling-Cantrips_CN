@@ -1,21 +1,21 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using ScalingCantrips.Extensions;
 using ScalingCantrips.Utilities;
-
-using Kingmaker.UnitLogic.Abilities;
-using Kingmaker.Blueprints.Items.Weapons;
-using Kingmaker.Blueprints.Classes.Spells;
-using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.Blueprints.Classes;
+using System;
 
 namespace ScalingCantrips
 {
@@ -28,14 +28,21 @@ namespace ScalingCantrips
 
       static void Postfix()
       {
-        if (Initialized) return;
-        Initialized = true;
-        Main.Log("Adding New Ranged Cantrips");
-        if (!Main.settings.DontAddUnholyZap)
+        try
         {
-          AddUnholyZap();
+          if (Initialized) return;
+          Initialized = true;
+          Main.Log("Adding New Ranged Cantrips");
+          if (!Main.settings.DontAddUnholyZap)
+          {
+            AddUnholyZap();
+          }
+          AddFirebolt();
         }
-        AddFirebolt();
+        catch (Exception e)
+        {
+          Main.Logger.LogException(e);
+        }
       }
 
       static void AddFirebolt()
