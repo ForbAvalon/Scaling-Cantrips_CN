@@ -3,22 +3,27 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace ScalingCantrips.Utilities {
-    class PostPatchInitializeAttribute : Attribute {
-    }
+namespace ScalingCantrips.Utilities
+{
+  class PostPatchInitializeAttribute : Attribute
+  {
+  }
 
-    static class PostPatchInitializer {
-        public static void Initialize() {
-            var methods = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(x => x.IsClass)
-                .SelectMany(x => AccessTools.GetDeclaredMethods(x))
-                .Where(x => x.GetCustomAttributes(typeof(PostPatchInitializeAttribute), false).FirstOrDefault() != null);
+  static class PostPatchInitializer
+  {
+    public static void Initialize()
+    {
+      var methods = Assembly.GetExecutingAssembly()
+          .GetTypes()
+          .Where(x => x.IsClass)
+          .SelectMany(x => AccessTools.GetDeclaredMethods(x))
+          .Where(x => x.GetCustomAttributes(typeof(PostPatchInitializeAttribute), false).FirstOrDefault() != null);
 
-            foreach (var method in methods) {
-                ScalingCantrips.Main.LogDebug($"Executing Post Patch: {method.Name}");
-                method.Invoke(null, null); // invoke the method
-            }
-        }
+      foreach (var method in methods)
+      {
+        Main.LogDebug($"Executing Post Patch: {method.Name}");
+        method.Invoke(null, null); // invoke the method
+      }
     }
+  }
 }

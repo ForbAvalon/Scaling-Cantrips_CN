@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Mechanics;
@@ -9,12 +8,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using ScalingCantrips.Extensions;
 using ScalingCantrips.Utilities;
-using ScalingCantrips.Config;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.UnitLogic.Mechanics.Properties;
@@ -22,7 +16,7 @@ using Kingmaker.UnitLogic.Mechanics.Properties;
 namespace ScalingCantrips
 {
 
-    public class CantripPatcher
+  public class CantripPatcher
     {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         public static class BlueprintPatcher
@@ -41,13 +35,9 @@ namespace ScalingCantrips
             {
                 var customProperty = Resources.GetModBlueprint<BlueprintUnitProperty>("RMHighestCasterLevelCantrips");
 
-                if (customProperty == null)
-                {
-                    customProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>("RMHighestCasterLevelCantrips", bp => {
+                customProperty ??= Helpers.CreateBlueprint<BlueprintUnitProperty>("RMHighestCasterLevelCantrips", bp => {
                         bp.AddComponent(new HighestCasterLevel());
                     });
-                    
-                }
 
                 return customProperty;
 

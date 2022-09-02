@@ -1,158 +1,101 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8ED1AD2C-191F-43F1-A2C4-1BA78E7D0966}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScalingCantrips</RootNamespace>
+    <!--
+			Enables the latest C# language features. Runtime features are limited by the .NET framework version, so some
+			features (e.g. Default Interfaces) are not available.
+		-->
+    <LangVersion>latest</LangVersion>
+    <!-- Latest .NET version supported by Wrath / Unity -->
+    <TargetFramework>net472</TargetFramework>
+
+    <!-- Needed to use publicized assembly -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
     <AssemblyName>ScalingCantrips</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <RootNamespace>ScalingCantrips</RootNamespace>
+
+    <Version>1.0.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\0Harmony.dll</HintPath>
-      <Private>False</Private>
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AssemblyPublicizer" Version="*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Main Wrath Assembly, Publicized -->
+    <Reference Include="Assembly-CSharp.dll">
+      <HintPath>$(SolutionDir)lib\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+
+    <!-- Wrath Assemblies -->
+    <Reference Include="Assembly-CSharp-firstpass.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp_public">
-      <HintPath>..\..\WrathMods-TabletopTweaks-master\lib\Assembly-CSharp_public.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Owlcat.Runtime.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Owlcat.Runtime.Core.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Core.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Owlcat.Runtime.UI, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.UI.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Owlcat.Runtime.Validation.dll">
+      <HintPath>$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Validation.dll</HintPath>
     </Reference>
-    <Reference Include="Owlcat.Runtime.Validation">
-      <HintPath>F:\SteamLibrary\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Owlcat.Runtime.Validation.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UniRx_public">
-      <HintPath>..\..\WrathMods-TabletopTweaks-master\lib\UniRx_public.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
+    <Reference Include="UnityEngine.CoreModule.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="System.Core">
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\System.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
+    <Reference Include="UnityEngine.IMGUIModule.dll">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="UnityEngine.ImageConversionModule.dll">
+      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+
+    <!-- UMM & Harmony -->
+    <Reference Include="0Harmony">
+      <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityModManager\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="UnityModManager">
       <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
+
   <ItemGroup>
-    <AppDesigner Include="Properties\" />
+    <None Update="Info.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AddCasterStatToDamage.cs" />
-    <Compile Include="CantripFeaturePatcher.cs" />
-    <Compile Include="CantripPatcher.cs" />
-    <Compile Include="Config\Blueprints.cs" />
-    <Compile Include="Config\IUpdatableSettings.cs" />
-    <Compile Include="Config\ModSettings.cs" />
-    <Compile Include="Config\Scaling.cs" />
-    <Compile Include="Config\SettingGroup.cs" />
-    <Compile Include="Extensions\ExtentionMethods.cs" />
-    <Compile Include="HighestCasterLevel.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="MeleeTouchCantrips.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="RangedTouchCantrips.cs" />
-    <Compile Include="Utilities\AssetLoader.cs" />
-    <Compile Include="Utilities\Attributes.cs" />
-    <Compile Include="Utilities\BloodlineTools.cs" />
-    <Compile Include="Utilities\DescriptionTools.cs" />
-    <Compile Include="Utilities\FeatTools.cs" />
-    <Compile Include="Utilities\Helpers.cs" />
-    <Compile Include="Utilities\ILUtils.cs" />
-    <Compile Include="Utilities\SpellTools.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Config\Blueprints.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Config\Scaling.json" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <!-- Generates Assembly-CSharp_public.dll -->
+  <Target Name="Publicize" AfterTargets="Clean">
+    <ItemGroup>
+      <Assemblies Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
+      <PublicAssembly Include="$(SolutionDir)lib\Assembly-CSharp_public.dll" />
+      <RenamedAssembly Include="$(SolutionDir)lib\Assembly-CSharp.dll" />
+    </ItemGroup>
+
+    <PublicizeTask InputAssemblies="@(Assemblies)" OutputDir="$(SolutionDir)lib/" />
+    <Move SourceFiles="@(PublicAssembly)" DestinationFiles="@(RenamedAssembly)" />
+  </Target>
+
+  <!-- Automatically deploys the mod on build -->
+  <Target Name="Deploy" AfterTargets="Build">
+    <ItemGroup>
+      <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
+      <ModConfig Include="$(OutputPath)\Info.json" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
+    <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
+  </Target>
+
 </Project>
