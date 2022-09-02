@@ -1,4 +1,12 @@
+### Wolfie's Updates
+
+If you have any bugs you can file an [issue on GitHub](https://github.com/WittleWolfie/Scaling-Cantrips/issues/new).
+
+I have no intention of adding content or functionality to this mod, I just want to keep it working with the latest game
+patch so nobody loses their save file.
+
 # Scaling-Cantrips
+
 The forbidden act of bringing some D&amp;D 5e to a Pathfinder game
 
 Specifically sets it up so that by default, cantrip damage spells (Acid Splash, Jolt, Ray of Frost, Divine Zap) get an additional 1d3 damage dice for every two caster levels a character has.
