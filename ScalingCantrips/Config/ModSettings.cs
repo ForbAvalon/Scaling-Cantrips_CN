@@ -23,6 +23,8 @@ namespace ScalingCantrips.Config
 
     private static void LoadSettings<T>(string fileName, ref T setting) where T : IUpdatableSettings
     {
+      Main.Logger.NativeLog($"Loading Settings: {fileName}");
+
       var assembly = Assembly.GetExecutingAssembly();
       string userConfigFolder = ModEntry.Path + "UserSettings";
       Directory.CreateDirectory(userConfigFolder);
@@ -37,6 +39,7 @@ namespace ScalingCantrips.Config
 
       if (File.Exists(userPath))
       {
+        Main.Logger.Log($"Creating new settings file for {fileName}");
         using (StreamReader reader = File.OpenText(userPath))
         {
           try
@@ -56,6 +59,10 @@ namespace ScalingCantrips.Config
             }
           }
         }
+      }
+      else
+      {
+        Main.Logger.Log($"No settings file found for {fileName}");
       }
       File.WriteAllText(userPath, JsonConvert.SerializeObject(setting, Formatting.Indented));
     }

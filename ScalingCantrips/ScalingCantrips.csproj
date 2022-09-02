@@ -25,6 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Config\Blueprints.json" />
+    <None Remove="Config\Scaling.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Blueprints.json" />
+    <EmbeddedResource Include="Config\Scaling.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AssemblyPublicizer" Version="*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
