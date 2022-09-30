@@ -121,8 +121,8 @@ namespace ScalingCantrips
           bp.Groups = new FeatureGroup[] {
                     FeatureGroup.WizardFeat, FeatureGroup.Feat};
           bp.Ranks = 1;
-          bp.SetName("Cantrip Expert (Wisdom)");
-          bp.SetDescription("Cantrips you can cast now have a damage bonus equal to your Wisdom stat bonus.");
+          bp.SetName("戏法专家（感知）");
+          bp.SetDescription("你的戏法将会附带感知调整值的伤害。");
           bp.m_DescriptionShort = bp.m_Description;
           bp.AddComponent(Helpers.Create<AddCasterStatToDamage>(c =>
           {
@@ -142,8 +142,8 @@ namespace ScalingCantrips
           bp.Groups = new FeatureGroup[] {
                     FeatureGroup.WizardFeat, FeatureGroup.Feat};
           bp.Ranks = 1;
-          bp.SetName("Cantrip Expert (Intelligence)");
-          bp.SetDescription("Cantrips you can cast now have a damage bonus equal to your Intelligence stat bonus.");
+          bp.SetName("戏法专家（智力）");
+          bp.SetDescription("你的戏法将会附带智力调整值的伤害。");
           bp.m_DescriptionShort = bp.m_Description;
           bp.AddComponent(Helpers.Create<AddCasterStatToDamage>(c =>
           {
@@ -163,8 +163,8 @@ namespace ScalingCantrips
           bp.Groups = new FeatureGroup[] {
                     FeatureGroup.WizardFeat, FeatureGroup.Feat};
           bp.Ranks = 1;
-          bp.SetName("Cantrip Expert (Charisma)");
-          bp.SetDescription("Cantrips you can cast now have a damage bonus equal to your Charisma stat bonus.");
+          bp.SetName("戏法专家（魅力）");
+          bp.SetDescription("你的戏法将会附带魅力调整值的伤害。");
           bp.m_DescriptionShort = bp.m_Description;
           bp.AddComponent(Helpers.Create<AddCasterStatToDamage>(c =>
           {

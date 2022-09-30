@@ -108,8 +108,8 @@ namespace ScalingCantrips
 
         var newString = buff.Description;
 
-        newString += "For every " + Main.settings.VirtueCasterLevelsReq + " caster level(s) the caster has, Virtue will grant another point of temporary HP, up to "
-            + Main.settings.VirtueMaxDice + " points total.";
+        newString += "每拥有" + Main.settings.VirtueCasterLevelsReq + "个施法者等级，恩赐提供的临时生命值就额外+1，最多增加"
+            + Main.settings.VirtueMaxDice + "点临时生命值。";
         buff.SetDescription(newString);
         cantrip.SetDescription(newString);
       }
@@ -153,7 +153,7 @@ namespace ScalingCantrips
         }
         var newString = cantrip.Description;
 
-        newString += " Damage dice is increased by 1 every " + Main.settings.CasterLevelsReq + " caster level(s), up to a maximum of " + Main.settings.MaxDice + "d3.";
+        newString += "每拥有" + Main.settings.CasterLevelsReq + "个施法者等级伤害骰额外+1，最多增至" + Main.settings.MaxDice + "d3。";
         cantrip.SetDescription(newString);
 
         //  Main.Log("Patched " + cantrip.m_DisplayName + " to have this rankconfig: \n " + RankConfig.ToString());
@@ -199,8 +199,8 @@ namespace ScalingCantrips
         }
         var newString = cantrip.Description;
 
-        newString += " Damage dice is increased by 1 at every " + Main.settings.DisruptCasterLevelsReq + " caster level(s), up to a maximum of + "
-            + Main.settings.DisruptMaxDice + "d6.";
+        newString += "每拥有" + Main.settings.DisruptCasterLevelsReq + "个施法者等级伤害骰额外+1，最多增至"
+            + Main.settings.DisruptMaxDice + "d6。";
         cantrip.SetDescription(newString);
       }
     }

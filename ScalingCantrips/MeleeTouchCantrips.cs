@@ -54,10 +54,10 @@ namespace ScalingCantrips
           {
 
             bp.m_Icon = ShockingGrasp.m_Icon;
-            bp.SetName("Jolting Grasp");
-            bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per "
-                        + Main.settings.JoltingGraspLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + Main.settings.JoltingGraspMaxDice +
-                        "d6)" + " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+            bp.SetName("震爪");
+            bp.SetDescription("你的近战{g|Encyclopedia:TouchAttack}接触攻击{/g}成功命中目标时会造成每"
+                        + Main.settings.JoltingGraspLevelsReq + "个{g|Encyclopedia:Caster_Level}施法者等级{/g}{g|Encyclopedia:Dice}1d3{/g}点{g|Encyclopedia:Energy_Damage}电击伤害{/g}（最高" + Main.settings.JoltingGraspMaxDice +
+                        "d6）。" + "如果目标身着金属盔甲（或手持金属或部分由金属制成的武器），你会在{g|Encyclopedia:Attack}攻击检定{/g}上获得+3{g|Encyclopedia:Bonus}加值{/g}。");
             bp.SpellResistance = true;
             bp.CanTargetEnemies = true;
             bp.CanTargetSelf = false;
@@ -162,10 +162,10 @@ namespace ScalingCantrips
         var JoltingGraspCast = Helpers.CreateBlueprint<BlueprintAbility>("RMJoltingGrasp", bp =>
         {
           bp.m_Icon = ShockingGrasp.m_Icon;
-          bp.SetName("Jolting Grasp");
-          bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per " + Main.settings.JoltingGraspLevelsReq +
-                      " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + Main.settings.JoltingGraspMaxDice + "d6)" +
-                      " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+          bp.SetName("震爪");
+          bp.SetDescription("你的近战{g|Encyclopedia:TouchAttack}接触攻击{/g}成功命中目标时会造成每" + Main.settings.JoltingGraspLevelsReq +
+                      "个{g|Encyclopedia:Caster_Level}施法者等级{/g}{g|Encyclopedia:Dice}1d3{/g}点{g|Encyclopedia:Energy_Damage}电击伤害{/g}（最高" + Main.settings.JoltingGraspMaxDice + "d6）。" +
+                      "如果目标身着金属盔甲（或手持金属或部分由金属制成的武器），你会在{g|Encyclopedia:Attack}攻击检定{/g}上获得+3{g|Encyclopedia:Bonus}加值{/g}。");
           bp.SpellResistance = true;
           bp.CanTargetEnemies = true;
           bp.CanTargetSelf = false;

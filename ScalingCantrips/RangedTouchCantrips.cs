@@ -56,10 +56,10 @@ namespace ScalingCantrips
         {
 
           bp.m_Icon = SickeningRay.m_Icon;
-          bp.SetName("Firebolt");
-          bp.SetDescription("You unleash a bolt of fire via a ranged touch attack. If successful, the target takes {g|Encyclopedia:Dice}1d3{/g} points of fire {g|Encyclopedia:Damage}damage{/g}; for every "
-                      + Main.settings.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + Main.settings.MaxDice +
-                      "d3.");
+          bp.SetName("火焰箭");
+          bp.SetDescription("你从指尖射出一束火焰，造成一次远程接触攻击。如果成功命中，目标将受到{g|Encyclopedia:Dice}1d3{/g}点火焰{g|Encyclopedia:Damage}伤害{/g}；每"
+                      + Main.settings.CasterLevelsReq + "个施法者等级伤害骰额外加1，最多增至" + Main.settings.MaxDice +
+                      "d3。");
           bp.m_TargetMapObjects = true;
           bp.Range = AbilityRange.Close;
           bp.SpellResistance = true;
@@ -204,10 +204,10 @@ namespace ScalingCantrips
         {
 
           bp.m_Icon = SickeningRay.m_Icon;
-          bp.SetName("Unholy Zap");
-          bp.SetDescription("You unleash unholy powers against a single target via a ranged touch attack. If successful, the target takes {g|Encyclopedia:Dice}1d3{/g} points of negative {g|Encyclopedia:Damage}damage{/g}; for every "
-                      + Main.settings.DisruptLifeLevelsReq + " caster level(s), another dice is added up to a max of " + Main.settings.DisruptLifeMaxDice +
-                      "d3. Fortitude saves if successful, halves damage.");
+          bp.SetName("亵渎迅击");
+          bp.SetDescription("你对一个目标释放黑暗力量，造成一次远程接触攻击。如果成功命中，目标受到{g|Encyclopedia:Dice}1d3{/g}点负向{g|Encyclopedia:Damage}伤害{/g}；，每"
+                      + Main.settings.DisruptLifeLevelsReq + "个施法者等级伤害骰额外加1，最多增至" + Main.settings.DisruptLifeMaxDice +
+                      "d3。目标可通过一次成功的强韧豁免检定来使伤害减半。");
           bp.m_TargetMapObjects = true;
           bp.Range = AbilityRange.Close;
           bp.SpellResistance = false;

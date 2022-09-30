@@ -70,57 +70,57 @@ namespace ScalingCantrips
           GUILayout.MaxWidth(1000)
         };
 
-      GUILayout.Label("FOR BEST EFFECT: restart the game after changing these settings.", options);
-      GUILayout.Label("Cantrips Caster Levels Required", options);
+      GUILayout.Label("注意：为保证改动生效,请在调整设置后重启游戏。", options);
+      GUILayout.Label("戏法伤害骰提升所需CL", options);
       GUILayout.Label(settings.CasterLevelsReq.ToString(), options);
       settings.CasterLevelsReq = (int)GUILayout.HorizontalSlider(settings.CasterLevelsReq, 1, 20, options);
 
-      GUILayout.Label("Cantrips Dice Maximum", options);
+      GUILayout.Label("戏法最大伤害骰数", options);
       GUILayout.Label(settings.MaxDice.ToString(), options);
       settings.MaxDice = (int)GUILayout.HorizontalSlider(settings.MaxDice, 1, 40, options);
 
       settings.IgnoreDivineZap =
-        GUILayout.Toggle(settings.IgnoreDivineZap, "Check this to prevent Divine Zap from being scaled", options);
+        GUILayout.Toggle(settings.IgnoreDivineZap, "勾选此项神圣迅击将不会被调整", options);
 
-      GUILayout.Label("Disrupt Undead Caster Levels Required", options);
+      GUILayout.Label("打击死灵伤害骰提升所需CL", options);
       GUILayout.Label(settings.DisruptCasterLevelsReq.ToString(), options);
       settings.DisruptCasterLevelsReq = (int)GUILayout.HorizontalSlider(settings.DisruptCasterLevelsReq, 1, 40, options);
 
-      GUILayout.Label("Disrupt Undead Dice Maximum", options);
+      GUILayout.Label("打击死灵最大伤害骰", options);
       GUILayout.Label(settings.DisruptMaxDice.ToString(), options);
       settings.DisruptMaxDice = (int)GUILayout.HorizontalSlider(settings.DisruptMaxDice, 1, 40, options);
 
-      GUILayout.Label("Virtue Caster Levels Required", options);
+      GUILayout.Label("恩赐额外生命值提升所需CL", options);
       GUILayout.Label(settings.VirtueCasterLevelsReq.ToString(), options);
       settings.VirtueCasterLevelsReq = (int)GUILayout.HorizontalSlider(settings.VirtueCasterLevelsReq, 1, 40, options);
 
-      GUILayout.Label("Virtue Dice Maximum", options);
+      GUILayout.Label("恩赐最大提供额外生命值", options);
       GUILayout.Label(settings.VirtueMaxDice.ToString(), options);
       settings.VirtueMaxDice = (int)GUILayout.HorizontalSlider(settings.VirtueMaxDice, 1, 40, options);
 
-      GUILayout.Label("Jolting Grasp Caster Levels Required", options);
+      GUILayout.Label("震爪伤害骰提升所需CL", options);
       GUILayout.Label(settings.JoltingGraspLevelsReq.ToString(), options);
       settings.JoltingGraspLevelsReq = (int)GUILayout.HorizontalSlider(settings.JoltingGraspLevelsReq, 1, 40, options);
 
-      GUILayout.Label("Jolting Grasp Dice Maximum", options);
+      GUILayout.Label("震爪最大伤害骰", options);
       GUILayout.Label(settings.JoltingGraspMaxDice.ToString(), options);
       settings.JoltingGraspMaxDice = (int)GUILayout.HorizontalSlider(settings.JoltingGraspMaxDice, 1, 40, options);
 
 
-      settings.DontAddUnholyZap = GUILayout.Toggle(settings.DontAddUnholyZap, "Check this to prevent Unholy Zap from being added", options);
+      settings.DontAddUnholyZap = GUILayout.Toggle(settings.DontAddUnholyZap, "勾选此项使亵渎迅击不被添加入游戏", options);
 
-      GUILayout.Label("Unholy Zap Caster Levels Required", options);
+      GUILayout.Label("亵渎迅击伤害骰提升所需CL", options);
       GUILayout.Label(settings.DisruptLifeLevelsReq.ToString(), options);
       settings.DisruptLifeLevelsReq = (int)GUILayout.HorizontalSlider(settings.DisruptLifeLevelsReq, 1, 40, options);
 
-      GUILayout.Label("Unholy Zap Dice Maximum", options);
+      GUILayout.Label("亵渎迅击最大伤害骰", options);
       GUILayout.Label(settings.DisruptLifeMaxDice.ToString(), options);
       settings.DisruptLifeMaxDice = (int)GUILayout.HorizontalSlider(settings.DisruptLifeMaxDice, 1, 40, options);
 
       settings.StartImmediately =
         GUILayout.Toggle(
           settings.StartImmediately,
-          "Check this to have caster levels take effect immediately (e.g Wizard 2 gets you 2d3 with default settings)",
+          "勾选此项使CL改变立刻生效（e.g Wizard 2 gets you 2d3 with default settings）",
           options);
     }
 
